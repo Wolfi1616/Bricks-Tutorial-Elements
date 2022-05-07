@@ -1,3 +1,9 @@
+/*
+ Author:       Wolfgang Hartl
+ Author URI:   https://my-webcraftdesign.at/
+ Version:      2.0
+ DOCS:         https://my-webcraftdesign.at/tutorial/mega-menu-in-bricksbuilder/
+*/
 function WCD_megaMenu(options) {
     const menu = document.querySelector(options.menu);
 
