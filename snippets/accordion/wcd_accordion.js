@@ -9,20 +9,27 @@ function WCD_accordion(options) {
     const accordionItems = target.querySelectorAll('.wcd_accordion_header');
 
     accordionItems.forEach((item) => {
-        item.style.cursor = 'pointer';
-        item.nextElementSibling.style.transition = 'max-height ' + options.duration + ' ease-out';
-        item.nextElementSibling.style.overflow = 'hidden';
+        var accordionContent = item.nextElementSibling;
+
 
         // INITIAL SETUP
+
+        item.style.cursor = 'pointer';
+        accordionContent.style.transition = 'max-height ' + options.duration + ' ease-out';
+        accordionContent.style.overflow = 'hidden';
+
+        accordionContent.setAttribute('acc-data-mh', accordionContent.scrollHeight + 'px');
+
         if (!item.classList.contains('wcd_accordion_active')) {
-            item.nextElementSibling.style.maxHeight = '0px'
+            accordionContent.style.maxHeight = '0px'
         } else {
-            item.nextElementSibling.style.maxHeight = item.nextElementSibling.scrollHeight + "px";
+            accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
         }
 
         // CLICK - LOGIC
         item.addEventListener('click', function() {
             var content = this.nextElementSibling;
+            var height = content.getAttribute('acc-data-mh');
 
             if (this.classList.contains('wcd_accordion_active')) {
                 this.classList.remove('wcd_accordion_active');
@@ -34,14 +41,14 @@ function WCD_accordion(options) {
                     loopItem.nextElementSibling.style.maxHeight = '0px';
                 })
                 this.classList.add("wcd_accordion_active");
-                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.maxHeight = height;
 
             } else {
                 this.classList.toggle("wcd_accordion_active");
                 if (content.style.maxHeight != '0px') {
                     content.style.maxHeight = '0px';
                 } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.style.maxHeight = height;
                 }
             }
         })

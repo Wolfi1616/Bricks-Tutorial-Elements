@@ -33,6 +33,7 @@ function WCD_megaMenu(options) {
     // INITIAL SETUP FOR ALL MEGA-MENU ITEMS & DROPDOWNS!
     document.querySelectorAll('[wcd_mm_target]').forEach((dropdownElement) => {
         dropdownElement.getAttribute('wcd_mm_position') ? position = dropdownElement.getAttribute('wcd_mm_position') : position = options.position;
+
         index = dropdownElement.getAttribute('wcd_mm_target');
 
         linkPosition = menuItems[index].getBoundingClientRect();
@@ -62,13 +63,17 @@ function WCD_megaMenu(options) {
                 dropdownElement.style.left = centerPosition + 'px';
             } else if (position == 'left') {
                 dropdownElement.style.left = leftPosition + 'px';
-            } else {
+            } else if (position == 'right') {
                 dropdownElement.style.right = rightPosition + 'px';
+            } else if (position == 'screen-center') {
+                dropdownElement.style.left = '50%';
+                dropdownElement.style.marginLeft = '-' + dropdownWidth / 2 + 'px';
             }
+
             if (options.hover.open) menuItems[index].addEventListener('mouseover', wcd_toggleDropdowns);
             if (options.hover.close) document.addEventListener('mouseover', wcd_closeAllDropdowns);
-        }
 
+        }
 
         if (options.click.open) menuItems[index].addEventListener('click', wcd_toggleDropdowns);
         if (options.click.close) document.addEventListener('click', wcd_closeAllDropdowns);
