@@ -2,7 +2,7 @@
  Author:       Wolfgang Hartl
  Author URI:   https://my-webcraftdesign.at/
  Version:      2.0
- DOCS:         https://my-webcraftdesign.at/tutorial/create-an-accordion-the-easy-way-with-bricks-builder/
+ DOCS:         https://my-webcraftdesign.at/tutorial/nestable-accordion-in-bricksbuilder
 */
 function WCD_accordion(options) {
     const target = document.querySelector(options.target);
