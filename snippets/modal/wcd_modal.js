@@ -1,3 +1,9 @@
+/*
+ Author:       Wolfgang Hartl
+ Author URI:   https://my-webcraftdesign.at/
+ Version:      2.0
+ DOCS:         https://my-webcraftdesign.at/tutorial/modal-popup-in-bricks/
+*/
 function WCD_modal(options) {
     // MODAL-SETUP
     const modal = document.querySelector(options.modal);
@@ -6,6 +12,8 @@ function WCD_modal(options) {
     modal.style.position = 'fixed';
     modal.style.width = '100vw';
     modal.style.height = '100vh';
+    modal.style.left = '0px';
+    modal.style.top = '0px';
 
 
     // TRIGGER-SETUP
