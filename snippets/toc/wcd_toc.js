@@ -2,7 +2,7 @@
  Author:       Wolfgang Hartl
  Author URI:   https://my-webcraftdesign.at/
  Version:      2.0.1
- DOCS:         https://my-webcraftdesign.at/tutorial/table-of-contents-in-bricksbuilder/
+ DOCS:         https://my-webcraftdesign.at/tutorial/table-of-contents-in-bricks-builder-without-any-plugin/
 */
 function WCD_toc(options) {
     const tableID = document.querySelector(options.target);
