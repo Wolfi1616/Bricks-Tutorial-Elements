@@ -44,9 +44,12 @@ function WCD_megaMenu(options) {
 
         linkPosition = menuItems[index].getBoundingClientRect();
         dropdownWidth = dropdownElement.clientWidth;
+        screenWidth = window.innerWidth;
+
         leftPosition = linkPosition.left - menuPosition.left;
         rightPosition = menuPosition.right - linkPosition.right;
         centerPosition = leftPosition - dropdownWidth / 2;
+        screenCenterPosition = -menuPosition.left + screenWidth / 2 - dropdownWidth / 2;
 
         menuItems[index].classList.add('wcd_mm_dropdown');
         menuItems[index].innerHTML += '<i class="wcd_mm_dropdown" style="margin-left: 5px; transform: rotate(90deg);">&#62;</i>';
@@ -72,8 +75,9 @@ function WCD_megaMenu(options) {
             } else if (position == 'right') {
                 dropdownElement.style.right = rightPosition + 'px';
             } else if (position == 'screen-center') {
-                dropdownElement.style.left = '50%';
-                dropdownElement.style.marginLeft = '-' + dropdownWidth / 2 + 'px';
+                dropdownElement.style.left = screenCenterPosition + 'px';
+                //dropdownElement.style.left = '50%';
+                // dropdownElement.style.marginLeft = '-' + dropdownWidth / 2 + 'px';
             }
 
             if (options.hover.open) menuItems[index].addEventListener('mouseover', wcd_toggleDropdowns);
@@ -81,7 +85,7 @@ function WCD_megaMenu(options) {
 
         }
 
-        if (options.click.open) menuItems[index].addEventListener('click', wcd_toggleDropdowns);
+        if (options.click.open || options.breakpoint.matches) menuItems[index].addEventListener('click', wcd_toggleDropdowns);
         if (options.click.close) document.addEventListener('click', wcd_closeAllDropdowns);
 
         function wcd_toggleDropdowns() {
