@@ -1,7 +1,14 @@
+/*
+ Author:       Wolfgang Hartl
+ Author URI:   https://my-webcraftdesign.at/
+ Version:      2.0
+ DOCS:         https://my-webcraftdesign.at/tutorial/nestable-tabs-element-in-bricks-builder/
+*/
 function WCD_tabs(options) {
+    const target = document.querySelector(options.target);
     const defaultOpen = options.defaultOpen;
-    const tabLinks = document.querySelectorAll('.wcd_tab_link');
-    const tabContents = document.querySelectorAll('.wcd_tab_content');
+    const tabLinks = target.querySelectorAll('.wcd_tab_link');
+    const tabContents = target.querySelectorAll('.wcd_tab_content');
 
 
     // SETUP CONTENT
