@@ -12,6 +12,8 @@ function WCD_modal(options) {
   modal.style.position = "fixed";
   modal.style.width = "100vw";
   modal.style.height = "100vh";
+  modal.style.left = "0px";
+  modal.style.top = "0px";
 
   // TRIGGER-SETUP
   if (!options.trigger) {
