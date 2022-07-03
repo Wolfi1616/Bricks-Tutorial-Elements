@@ -3,6 +3,7 @@
  Author URI:   https://my-webcraftdesign.at/
  DOCS:         https://my-webcraftdesign.at/tutorial/modal-popup-in-bricks/
 */
+
 function WCD_modal(options) {
   // MODAL-SETUP
   const modal = document.querySelector(options.modal);
@@ -11,8 +12,6 @@ function WCD_modal(options) {
   modal.style.position = "fixed";
   modal.style.width = "100vw";
   modal.style.height = "100vh";
-  modal.style.left = "0px";
-  modal.style.top = "0px";
 
   // TRIGGER-SETUP
   if (!options.trigger) {
@@ -55,7 +54,6 @@ function WCD_modal(options) {
   });
   //CLOSE ON ESC-KEY
   document.addEventListener("keydown", function (e) {
-    console.log(e.key);
     if (e.key == "Escape") {
       wcd_closeModal();
     }
@@ -76,4 +74,12 @@ function WCD_modal(options) {
   function wcd_closeModal() {
     modal.style.display = "none";
   }
+
+  WCD_modal.prototype.openModal = function () {
+    wcd_openModal();
+  };
+
+  WCD_modal.prototype.closeModal = function () {
+    wcd_closeModal();
+  };
 }
