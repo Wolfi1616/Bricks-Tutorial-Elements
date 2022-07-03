@@ -27,8 +27,8 @@ function WCD_megaMenu(options) {
     options.hover.hasOwnProperty('close') ? options.hover.close = options.hover.close : options.hover.close = false;
 
 
+    //TODO: Find a way to include the +17px position from scrollbar!
     var menuPosition = menu.getBoundingClientRect();
-
 
     if (options.breakpoint.matches) {
         menuItems = menu.querySelector('.bricks-mobile-menu-wrapper').getElementsByTagName('A');
@@ -44,17 +44,26 @@ function WCD_megaMenu(options) {
 
         linkPosition = menuItems[index].getBoundingClientRect();
         dropdownWidth = dropdownElement.clientWidth;
-        screenWidth = window.innerWidth;
+        screenWidth = document.querySelector('body').clientWidth;
 
-        leftPosition = linkPosition.left - menuPosition.left;
-        rightPosition = menuPosition.right - linkPosition.right;
-        centerPosition = leftPosition - dropdownWidth / 2;
-        screenCenterPosition = -menuPosition.left + screenWidth / 2 - dropdownWidth / 2;
+       // console.log(document.querySelector('body').clientWidth);
+        //console.log(dropdownElement.clientWidth);
+        console.log(menuPosition.left);
+        console.log(screenWidth-dropdownWidth);
+        console.log(screenWidth);
+        // console.log('Element: ' + dropdownElement.offsetWidth);
+
+
+
+
 
         menuItems[index].classList.add('wcd_mm_dropdown');
         menuItems[index].innerHTML += '<i class="wcd_mm_dropdown" style="margin-left: 5px; transform: rotate(90deg);">&#62;</i>';
+        
+        //TODO: Fix problem in accessibility (see: https://web-craft.design for possible solution)
         menuItems[index].removeAttribute('href');
 
+        dropdownElement.style.width = dropdownElement.offsetWidth + 'px';
         dropdownElement.style.display = 'none';
         dropdownElement.style.maxWidth = '100vw';
         dropdownElement.style.zIndex = 1993;
@@ -66,6 +75,15 @@ function WCD_megaMenu(options) {
 
         } else {
             // DESKTOP:
+
+            leftPosition = linkPosition.left - menuPosition.left;
+            rightPosition = menuPosition.right - linkPosition.right;
+            //TODO: test with (linkPosition.right-linkPosition.left) + linkPosition.left - menuPosition.left - dropdownWidth/2;
+            centerPosition = leftPosition - dropdownWidth / 2;
+
+            //TODO: Fix bug with full width dropdown
+            screenCenterPosition = -menuPosition.left + screenWidth/2 - dropdownWidth/2;
+ 
             menu.append(dropdownElement);
             dropdownElement.style.position = 'absolute';
             if (position == 'center') {
